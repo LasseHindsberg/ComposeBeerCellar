@@ -51,4 +51,45 @@ class BeersRepository {
             }
         })
     }
+    fun add(beer: Beer) {
+        beersService.saveBeer(beer).enqueue(object : Callback<Beer> {
+            override fun onResponse(call: Call<Beer>, response: Response<Beer>) {
+                if (response.isSuccessful) {
+                    getBeers()
+                    errorMessageFlow.value = ""
+                } else {
+                    val message = response.code().toString() + " " + response.message()
+                    errorMessageFlow.value = message
+                }
+            }
+
+            override fun onFailure(call: Call<Beer>, t: Throwable) {
+                val message = t.message ?: "No connection to back-end"
+                errorMessageFlow.value = message
+            }
+        })
+    }
+
+    fun delete(id: Int) {
+        beersService.deleteBeer(id).enqueue(object : Callback<Beer> {
+            override fun onResponse(call: Call<Beer>, response: Response<Beer>) {
+                if (response.isSuccessful) {
+                    Log.d("BANAN", "Delete: " + response.body())
+                    errorMessageFlow.value = ""
+                    getBeers()
+                } else {
+                    val message = response.code().toString() + " " + response.message()
+                    errorMessageFlow.value = message
+                }
+            }
+
+            override fun onFailure(call: Call<Beer>, t: Throwable) {
+                val message = t.message ?: "No connection to back-end"
+                errorMessageFlow.value = message
+            }
+        })
+    }
+
+
+
 }
