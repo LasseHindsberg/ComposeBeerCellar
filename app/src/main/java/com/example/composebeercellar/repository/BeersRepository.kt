@@ -74,7 +74,7 @@ class BeersRepository {
         beersService.deleteBeer(id).enqueue(object : Callback<Beer> {
             override fun onResponse(call: Call<Beer>, response: Response<Beer>) {
                 if (response.isSuccessful) {
-                    Log.d("BANAN", "Delete: " + response.body())
+                    Log.d("BANANA", "Delete: " + response.body())
                     errorMessageFlow.value = ""
                     getBeers()
                 } else {
