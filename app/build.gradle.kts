@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.converter.gson)
 
     implementation(libs.converter.moshi)
+    implementation(libs.coil.compose)
+
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.runtime.livedata) // observeAsState
