@@ -15,15 +15,15 @@ private val repository = BeersRepository()
         reload()
     }
 
-    private fun reload() {
+    fun reload() {
         repository.getBeers()
     }
 
-    private fun add(beer: Beer) {
+    fun add(beer: Beer) {
         repository.add(beer)
     }
 
-    private fun delete(beer: Beer) {
+    fun delete(beer: Beer) {
         repository.delete(beer.id)
     }
 }
