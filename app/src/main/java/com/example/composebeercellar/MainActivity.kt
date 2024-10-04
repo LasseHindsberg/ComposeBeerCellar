@@ -1,6 +1,6 @@
 package com.example.composebeercellar
 
-import BeerDetailView
+import com.example.composebeercellar.views.BeerDetailView
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -61,8 +61,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 name = "No beer",
                 brewery = "no brewery",
                 style = "no style",
-                abv = 0,
-                volume = 0,
+                abv = 0.0,
+                volume = 0.0,
                 pictureUrl = "Null",
                 howMany = 0
             )
