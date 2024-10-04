@@ -131,8 +131,8 @@ fun BeerItem(
 @Composable
 fun BeerListViewPreview() {
     val sampleBeers = listOf(
-        Beer(id = 1, user = "John", brewery = "BrewDog", name = "Punk IPA", style = "IPA", abv = 5, volume = 330, pictureUrl = "", howMany = 5),
-        Beer(id = 2, user = "John", brewery = "Guinness", name = "Guinness Draught", style = "Stout", abv = 4, volume = 440, pictureUrl = "", howMany = 10),
+        Beer(id = 1, user = "John", brewery = "BrewDog", name = "Punk IPA", style = "IPA", abv = 5.0, volume = 330.0, pictureUrl = "", howMany = 5),
+        Beer(id = 2, user = "John", brewery = "Guinness", name = "Guinness Draught", style = "Stout", abv = 4.0, volume = 440.0, pictureUrl = "", howMany = 10),
     )
 
     BeerListView(

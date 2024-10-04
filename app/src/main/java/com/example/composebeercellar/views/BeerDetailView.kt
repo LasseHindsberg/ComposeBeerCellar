@@ -1,19 +1,16 @@
-import androidx.compose.foundation.clickable
+package com.example.composebeercellar.views
+
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+// import coil.compose.AsyncImage
 import com.example.composebeercellar.model.Beer
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +43,7 @@ fun BeerDetailView(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Displaying the beer image
-            AsyncImage(
+             /* AsyncImage(
                 model = beer.pictureUrl,
                 contentDescription = "Beer Image",
                 modifier = Modifier
@@ -55,7 +52,7 @@ fun BeerDetailView(
                     .aspectRatio(1f)
                     .padding(16.dp),
                 contentScale = ContentScale.Crop
-            )
+            ) */
 
             // Beer Name (Title)
             Text(
@@ -75,8 +72,8 @@ fun BeerDetailView(
 
             // Beer Details (ABV, Style, Volume, etc.)
             BeerDetailRow(label = "Style", value = beer.style)
-            BeerDetailRow(label = "ABV", value = "${beer.abv}%")
-            BeerDetailRow(label = "Volume", value = "${beer.volume}ml")
+             BeerDetailRow(label = "ABV", value = "${beer.abv}%")
+            BeerDetailRow(label = "Volume", value = "${beer.volume}cl")
             BeerDetailRow(label = "Quantity", value = "${beer.howMany}")
         }
     }
@@ -104,8 +101,8 @@ fun BeerDetailViewPreview() {
         brewery = "BrewDog",
         name = "Punk IPA",
         style = "IPA",
-        abv = 5,
-        volume = 330,
+        abv = 5.0,
+        volume = 330.0,
         pictureUrl = "https://frugt.dk/img/p/2/4/0/2/6/24026.jpg", // Sample image URL
         howMany = 5
     )
