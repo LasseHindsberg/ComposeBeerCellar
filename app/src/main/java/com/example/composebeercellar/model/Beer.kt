@@ -8,8 +8,8 @@ data class Beer(
     val brewery: String,
     val name: String,
     val style: String,
-    val abv: Int,
-    val volume: Int,
+    val abv: Double,
+    val volume: Double,
     val pictureUrl: String,
     val howMany: Int
 ) {
@@ -18,8 +18,8 @@ data class Beer(
         brewery: String,
         name: String,
         style: String,
-        abv: Int,
-        volume: Int,
+        abv: Double,
+        volume: Double,
         pictureUrl: String,
         howMany: Int
     ) : this(-1, user, brewery, name, style, abv, volume, pictureUrl, howMany)
