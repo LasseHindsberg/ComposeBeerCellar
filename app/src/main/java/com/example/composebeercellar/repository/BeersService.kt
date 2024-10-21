@@ -24,8 +24,8 @@ interface BeersService {
     @DELETE("beers/{id}")
     fun deleteBeer(@Path("id") id: Int): Call<Beer>
 
-    // UPDATE
-    @PUT("beers/{id}")
-    fun updateBeer(@Path("id") id: Int, @Body beer: Beer): Call<Beer>
+    // UPDATE - Not used currently
+    // @PUT("beers/{id}")
+    // fun updateBeer(@Path("id") id: Int, @Body beer: Beer): Call<Beer>
 
 }
