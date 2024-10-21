@@ -17,6 +17,7 @@ import androidx.navigation.navArgument
 import com.example.composebeercellar.model.Beer
 import com.example.composebeercellar.model.BeersViewModel
 import com.example.composebeercellar.ui.theme.ComposeBeerCellarTheme
+import com.example.composebeercellar.views.BeerAddView
 import com.example.composebeercellar.views.BeerListView
 
 class MainActivity : ComponentActivity() {
@@ -68,18 +69,16 @@ fun MainScreen(modifier: Modifier = Modifier) {
             )
             BeerDetailView(
                 beer = beer,
-                // todo: onUpdate function
-                //onUpdate = {id: Int, beer: Beer -> viewModel.}
                 onBack = { navController.popBackStack() })
         }
-        /*
         composable(NavRoutes.BeerAdd.route) {
-            // todo: beer add screen
-            BeerAddView(modifier = modifier,
-            addBeer = { beer -> viewModel.add(beer) },
-            onBack = { navController.popBackStack() })
-            }
-             */
+            BeerAddView(
+                onAddBeer = { beer -> viewModel.add(beer) },
+                onBack = { navController.popBackStack() },
+                currentUser = "logged_in_user" // Replace with actual logged-in user logic later
+            )
+        }
+
 
     }
 }
