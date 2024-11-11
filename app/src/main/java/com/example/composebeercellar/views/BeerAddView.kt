@@ -19,9 +19,9 @@ fun BeerAddView(
     modifier: Modifier = Modifier,
     onAddBeer: (Beer) -> Unit,
     onBack: () -> Unit,
-    currentUser: String // Logged-in user should be passed here
+    currentUser: String
 ) {
-    // State variables for the form inputs
+
     var name by remember { mutableStateOf("") }
     var brewery by remember { mutableStateOf("") }
     var style by remember { mutableStateOf("") }
@@ -30,7 +30,7 @@ fun BeerAddView(
     var pictureUrl by remember { mutableStateOf("") }
     var howMany by remember { mutableStateOf("") }
 
-    // Column layout for the form
+
     Column(modifier = modifier.padding(16.dp)) {
         // Beer Name
         OutlinedTextField(
@@ -89,19 +89,19 @@ fun BeerAddView(
         Button(
             modifier = Modifier.padding(top = 16.dp),
             onClick = {
-                // Convert input fields to appropriate data types and create a Beer object
+
                 val newBeer = Beer(
-                    user = currentUser, // Automatically assign the current user
+                    user = currentUser,
                     name = name,
                     brewery = brewery,
                     style = style,
-                    abv = abv.toDoubleOrNull() ?: 0.0, // Safely parse as Double
-                    volume = volume.toDoubleOrNull() ?: 0.0, // Safely parse as Double
+                    abv = abv.toDoubleOrNull() ?: 0.0,
+                    volume = volume.toDoubleOrNull() ?: 0.0,
                     pictureUrl = pictureUrl,
-                    howMany = howMany.toIntOrNull() ?: 0 // Safely parse as Int
+                    howMany = howMany.toIntOrNull() ?: 0
                 )
-                onAddBeer(newBeer) // Call the add beer function
-                onBack() // Navigate back
+                onAddBeer(newBeer)
+                onBack()
             }
         ) {
             Text("Add Beer")
@@ -110,7 +110,7 @@ fun BeerAddView(
         // Back Button
         Button(
             modifier = Modifier.padding(top = 8.dp),
-            onClick = { onBack() } // Navigate back
+            onClick = { onBack() }
         ) {
             Text("Cancel")
         }

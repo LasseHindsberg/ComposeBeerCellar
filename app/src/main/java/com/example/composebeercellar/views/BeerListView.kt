@@ -149,15 +149,6 @@ fun BeerListPanel(
                 )
             }
         }
-        /* LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items(beers) { beer ->
-                BeerItem(
-                    beer = beer,
-                    onBeerSelected = { onBeerSelected(beer) },
-                    onBeerDeleted = { onBeerDeleted(beer) }
-                )
-            }
-        } */
     }
 }
 

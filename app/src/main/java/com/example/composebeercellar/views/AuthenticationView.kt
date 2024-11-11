@@ -74,7 +74,8 @@ fun AuthenticationView(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
-            singleLine = true
+            singleLine = true,
+            visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation()
         )
 
         Spacer(modifier = Modifier.height(16.dp))

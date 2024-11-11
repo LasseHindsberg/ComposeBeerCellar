@@ -43,6 +43,10 @@ fun MainScreen(modifier: Modifier = Modifier) {
     val beers = viewModel.beersFlow.value
     val errorMessage = viewModel.errorMessageFlow.value
 
+    val currentUserEmail = authViewModel.user?.email
+
+    val userBeers = beers.filter { it.user == currentUserEmail }
+
     val logoutUser: () -> Unit = {
         authViewModel.signOut() // Call the signOut function in the ViewModel
         navController.navigate(NavRoutes.Authentication.route) {
@@ -70,7 +74,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
         composable(NavRoutes.BeerList.route) {
             BeerListView(
                 modifier = modifier,
-                beers = beers,
+                beers = userBeers,
                 errorMessage = errorMessage,
                 onBeerSelected =
                 { beer -> navController.navigate(NavRoutes.BeerDetails.route + "/${beer.id}") },
@@ -108,7 +112,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
             BeerAddView(
                 onAddBeer = { beer -> viewModel.add(beer) },
                 onBack = { navController.popBackStack() },
-                currentUser = "logged_in_user" // Replace with actual logged-in user logic later
+                currentUser = currentUserEmail ?: "No specified User"
             )
         }
 
