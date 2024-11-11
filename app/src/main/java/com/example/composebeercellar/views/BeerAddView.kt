@@ -59,7 +59,7 @@ fun BeerAddView(
             onValueChange = { abv = it },
             label = { Text("ABV") },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) // Numeric keyboard
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         // Volume
         OutlinedTextField(
@@ -67,7 +67,7 @@ fun BeerAddView(
             onValueChange = { volume = it },
             label = { Text("Volume (ml)") },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) // Numeric keyboard
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         // Picture URL
         OutlinedTextField(
@@ -82,7 +82,7 @@ fun BeerAddView(
             onValueChange = { howMany = it },
             label = { Text("Quantity") },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number) // Numeric keyboard
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
         // Submit Button

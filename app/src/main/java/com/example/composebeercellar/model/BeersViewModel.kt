@@ -26,4 +26,19 @@ private val repository = BeersRepository()
     fun delete(beer: Beer) {
         repository.delete(beer.id)
     }
+    fun update(id: Int, updatedBeer: Beer) {
+        repository.update(id, updatedBeer)
+    }
+
+    fun filterByName(nameFragment: String) {
+        repository.filterByName(nameFragment)
+    }
+
+    fun sortBeersByName(ascending: Boolean) {
+        repository.sortBeersByName(ascending)
+    }
+    fun sortBeersByABV(ascending: Boolean) {
+        repository.sortBeersByABV(ascending)
+    }
+
 }

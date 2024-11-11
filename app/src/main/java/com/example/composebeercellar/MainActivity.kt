@@ -14,9 +14,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.composebeercellar.model.AuthenticationViewModel
 import com.example.composebeercellar.model.Beer
 import com.example.composebeercellar.model.BeersViewModel
 import com.example.composebeercellar.ui.theme.ComposeBeerCellarTheme
+import com.example.composebeercellar.views.AuthenticationView
 import com.example.composebeercellar.views.BeerAddView
 import com.example.composebeercellar.views.BeerListView
 
@@ -35,11 +37,36 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+    val authViewModel: AuthenticationViewModel = viewModel()
     val viewModel: BeersViewModel = viewModel()
+    val isUserLoggedIn = authViewModel.user != null
     val beers = viewModel.beersFlow.value
     val errorMessage = viewModel.errorMessageFlow.value
 
-    NavHost(navController = navController, startDestination = NavRoutes.BeerList.route) {
+    val logoutUser: () -> Unit = {
+        authViewModel.signOut() // Call the signOut function in the ViewModel
+        navController.navigate(NavRoutes.Authentication.route) {
+            popUpTo(NavRoutes.BeerList.route) { inclusive = true }
+        }
+    }
+
+
+    NavHost(navController = navController, startDestination = if (isUserLoggedIn) NavRoutes.BeerList.route else NavRoutes.Authentication.route) {
+        composable(NavRoutes.Authentication.route) {
+            AuthenticationView(
+                user = authViewModel.user,
+                message = authViewModel.message,
+                signIn = { email, password -> authViewModel.signIn(email, password) },
+                register = { email, password -> authViewModel.register(email, password) },
+
+                navigateToNextScreen = {
+                    navController.navigate(NavRoutes.BeerList.route) {
+                        popUpTo(NavRoutes.Authentication.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+
         composable(NavRoutes.BeerList.route) {
             BeerListView(
                 modifier = modifier,
@@ -49,7 +76,10 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 { beer -> navController.navigate(NavRoutes.BeerDetails.route + "/${beer.id}") },
                 onBeerDeleted = { beer -> viewModel.delete(beer) },
                 onAdd = { navController.navigate(NavRoutes.BeerAdd.route) },
-                // todo: sorts and filters
+                sortByName = { viewModel.sortBeersByName(ascending = it) },
+                sortByABV = { viewModel.sortBeersByABV(ascending = it) },
+                filterByName = { viewModel.filterByName(it) },
+                onLogout = logoutUser
             )
         }
         composable(
@@ -69,6 +99,9 @@ fun MainScreen(modifier: Modifier = Modifier) {
             )
             BeerDetailView(
                 beer = beer,
+                onUpdate = { id, updatedBeer ->
+                    viewModel.update(id, updatedBeer)
+                },
                 onBack = { navController.popBackStack() })
         }
         composable(NavRoutes.BeerAdd.route) {
