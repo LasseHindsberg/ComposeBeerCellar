@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "729261962430",
+    "project_id": "composebeercellar",
+    "storage_bucket": "composebeercellar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729261962430:android:c7a25479ac95b7d8e19aef",
+        "android_client_info": {
+          "package_name": "com.example.composebeercellar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAChQHbz6L4rLqvcdUBEUMedXk2sdhxYiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
