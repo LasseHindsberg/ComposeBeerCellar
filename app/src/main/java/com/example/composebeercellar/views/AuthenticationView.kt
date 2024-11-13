@@ -11,6 +11,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,6 +35,7 @@ fun AuthenticationView(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false)}
 
     fun isValidInput(): Boolean {
         errorMessage = when {
@@ -46,9 +48,11 @@ fun AuthenticationView(
         return errorMessage.isEmpty()
     }
 
-    if (user != null) {
-        navigateToNextScreen()
-        return
+    if (user != null && !isLoading) {
+        LaunchedEffect(Unit) {
+            isLoading = true
+            navigateToNextScreen()
+        }
     }
 
     Column(

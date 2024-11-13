@@ -21,7 +21,7 @@ fun BeerAddView(
     onBack: () -> Unit,
     currentUser: String
 ) {
-
+    var id = 1
     var name by remember { mutableStateOf("") }
     var brewery by remember { mutableStateOf("") }
     var style by remember { mutableStateOf("") }
@@ -91,6 +91,7 @@ fun BeerAddView(
             onClick = {
 
                 val newBeer = Beer(
+                    id = id++,
                     user = currentUser,
                     name = name,
                     brewery = brewery,

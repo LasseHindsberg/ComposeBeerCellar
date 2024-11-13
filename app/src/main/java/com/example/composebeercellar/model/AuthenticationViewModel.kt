@@ -35,7 +35,7 @@ class AuthenticationViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful)  {
                     user = auth.currentUser
-                    message = ""
+                    message = "Sign In Successful"
                 } else {
                     user = null
                     message = task.exception?.message ?: "unknown error"
